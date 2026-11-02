@@ -62,8 +62,8 @@ class DepositoStrumenti:
         cursore = connessione.cursor()
         query = f"""SELECT * 
                             FROM strumento 
-                            WHERE strumento.tipo = '{tipo}'"""
-        cursore.execute(query)
+                            WHERE strumento.tipo = %s"""
+        cursore.execute(query, (tipo,))
         rows = cursore.fetchall()
         for row in rows:
             strumento = Strumento(row[0], row[1], row[2], row[3], row[4], row[5])

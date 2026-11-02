@@ -46,13 +46,13 @@ class Controller:
         lista_risultati = self._model.cerca_strumenti_per_tipo(tipo)
         self._view.lista_strumenti.controls.clear()
 
-        if tipo is not None:
+        if tipo is None:
+            self._view.show_alert("Inserisci un tipo valido")
+        else:
             if lista_risultati is not None:
                 for strumento in lista_risultati:
                     self._view.lista_strumenti_ricerca.controls.append(ft.Text(str(strumento)))
             else:
                 self._view.show_alert("Nessuno strumento trovato")
-        else:
-            self._view.show_alert("Inserisci un tipo valido")
 
         self._view.update()
