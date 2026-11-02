@@ -90,6 +90,7 @@ class View:
             # TODO
             ft.Row(spacing=10,
                    controls=[sottotitolo_terza_sez, pulsante_mostra_strumenti],),
+            self.lista_strumenti,
             ft.Divider(),
 
             # Sezione 4
@@ -97,7 +98,7 @@ class View:
             ft.Text("Cerca Strumento per Tipo", size=20),
             ft.Row(spacing=10,
                    controls=[self.input_tipo_strumento, pulsante_cerca_per_tipo],),
-
+            self.lista_strumenti_ricerca
         )
 
     def cambia_tema(self, e):

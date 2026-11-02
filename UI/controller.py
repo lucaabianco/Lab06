@@ -29,16 +29,30 @@ class Controller:
 
     # Altre Funzioni Event Handler
     # TODO
-    def mostra_strumenti(self,e):
+    def mostra_strumenti(self, e):
+        lista_DB = self._model.get_strumenti()
+        self._view.lista_strumenti.controls.clear()
 
+        if lista_DB is not None:
+            for strumento in lista_DB:
+                self._view.lista_strumenti.controls.append(ft.Text(str(strumento)))
+        else:
+            self._view.show_alert("Nessuno strumento trovato")
 
-
-        pass
-
+        self._view.update()
 
     def cerca_per_tipo(self,e):
-        lista_risultati = self._model.cerca_strumenti_per_tipo(self._view.input_tipo_strumento.value)
+        tipo = self._view.input_tipo_strumento.value
+        lista_risultati = self._model.cerca_strumenti_per_tipo(tipo)
+        self._view.lista_strumenti.controls.clear()
 
+        if tipo is not None:
+            if lista_risultati is not None:
+                for strumento in lista_risultati:
+                    self._view.lista_strumenti_ricerca.controls.append(ft.Text(str(strumento)))
+            else:
+                self._view.show_alert("Nessuno strumento trovato")
+        else:
+            self._view.show_alert("Inserisci un tipo valido")
 
-
-        pass
+        self._view.update()
