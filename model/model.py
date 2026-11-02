@@ -37,6 +37,9 @@ class DepositoStrumenti:
             :return: una lista con tutti gli strumenti presenti oppure None
         """
         connessione = database.DB_connect.get_connection()
+
+        if connessione is None:
+            raise ConnectionError("Impossibile connettersi al database")
         lista_strumenti = []
         cursore = connessione.cursor()
         query = 'SELECT * FROM strumento'
@@ -58,6 +61,9 @@ class DepositoStrumenti:
             :return: una lista con tutti gli strumenti del tipo indicato oppure None
         """
         connessione = database.DB_connect.get_connection()
+
+        if connessione is None:
+            raise ConnectionError("Impossibile connettersi al database")
         lista_selezionati = []
         cursore = connessione.cursor()
         query = f"""SELECT * 

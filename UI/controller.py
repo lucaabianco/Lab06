@@ -30,9 +30,12 @@ class Controller:
     # Altre Funzioni Event Handler
     # TODO
     def mostra_strumenti(self, e):
-        lista_DB = self._model.get_strumenti()
+        try:
+            lista_DB = self._model.get_strumenti()
+        except ConnectionError:
+            self._view.show_alert("Errore di connessione al database")
+            return
         self._view.lista_strumenti.controls.clear()
-
         if lista_DB is not None:
             for strumento in lista_DB:
                 self._view.lista_strumenti.controls.append(ft.Text(str(strumento)))
@@ -43,10 +46,16 @@ class Controller:
 
     def cerca_per_tipo(self,e):
         tipo = self._view.input_tipo_strumento.value
-        lista_risultati = self._model.cerca_strumenti_per_tipo(tipo)
-        self._view.lista_strumenti.controls.clear()
 
-        if tipo is None:
+        try:
+            lista_risultati = self._model.cerca_strumenti_per_tipo(tipo)
+        except ConnectionError:
+            self._view.show_alert("Errore di connessione al database")
+            return
+
+        self._view.lista_strumenti_ricerca.controls.clear()
+
+        if tipo == "":
             self._view.show_alert("Inserisci un tipo valido")
         else:
             if lista_risultati is not None:
