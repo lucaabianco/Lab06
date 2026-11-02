@@ -29,3 +29,16 @@ class Controller:
 
     # Altre Funzioni Event Handler
     # TODO
+    def mostra_strumenti(self,e):
+
+
+
+        pass
+
+
+    def cerca_per_tipo(self,e):
+        lista_risultati = self._model.cerca_strumenti_per_tipo(self._view.input_tipo_strumento.value)
+
+
+
+        pass

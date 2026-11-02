@@ -1,6 +1,7 @@
+import database
 from database.DB_connect import get_connection
-from strumento import Strumento
-from prestito import Prestito
+from model.strumento import Strumento
+from model.prestito import Prestito
 
 '''
     MODELLO:
@@ -35,7 +36,7 @@ class DepositoStrumenti:
             Funzione che legge tutti gli strumenti nel database
             :return: una lista con tutti gli strumenti presenti oppure None
         """
-        connessione = DB_connect.get_connection()
+        connessione = database.DB_connect.get_connection()
         lista_strumenti = []
         cursore = connessione.cursor()
         query = 'SELECT * FROM strumento'
@@ -56,7 +57,7 @@ class DepositoStrumenti:
             :param tipo: il tipo dello strumento (es. "Chitarra")
             :return: una lista con tutti gli strumenti del tipo indicato oppure None
         """
-        connessione = DB_connect.get_connection()
+        connessione = database.DB_connect.get_connection()
         lista_selezionati = []
         cursore = connessione.cursor()
         query = f"""SELECT * 

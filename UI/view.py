@@ -58,12 +58,17 @@ class View:
         # ListView per mostrare il risultato della ricerca strumenti per tipo
         self.lista_strumenti_ricerca = ft.ListView(expand=True, spacing=5, padding=10, auto_scroll=True)
 
+        #altri textfields
+        sottotitolo_terza_sez = ft.Text("Strumenti", size=20)
+
         # --- PULSANTI e TOGGLE associati a EVENTI ---
         self.toggle_cambia_tema = ft.Switch(label="Tema scuro", value=True, on_change=self.cambia_tema)
         pulsante_conferma_responsabile = ft.Button("Conferma", on_click=self.controller.conferma_responsabile)
 
         # Altri Pulsanti da implementare (es. "Mostra" e "Cerca")
         # TODO
+        pulsante_mostra_strumenti = ft.Button("Mostra", on_click = self.controller.mostra_strumenti)
+        pulsante_cerca_per_tipo = ft.Button("Cerca", on_click=self.controller.cerca_per_tipo)
 
         # --- LAYOUT ---
         self.page.add(
@@ -83,9 +88,16 @@ class View:
 
             # Sezione 3
             # TODO
+            ft.Row(spacing=10,
+                   controls=[sottotitolo_terza_sez, pulsante_mostra_strumenti],),
+            ft.Divider(),
 
             # Sezione 4
             # TODO
+            ft.Text("Cerca Strumento per Tipo", size=20),
+            ft.Row(spacing=10,
+                   controls=[self.input_tipo_strumento, pulsante_cerca_per_tipo],),
+
         )
 
     def cambia_tema(self, e):
