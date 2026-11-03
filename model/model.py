@@ -49,6 +49,7 @@ class DepositoStrumenti:
             strumento = Strumento(row[0], row[1], row[2], row[3], row[4], row[5])
             lista_strumenti.append(strumento)
         connessione.close()
+        cursore.close()
         if lista_strumenti:
             return lista_strumenti
         else:
@@ -75,6 +76,7 @@ class DepositoStrumenti:
             strumento = Strumento(row[0], row[1], row[2], row[3], row[4], row[5])
             lista_selezionati.append(strumento)
         connessione.close()
+        cursore.close()
         if lista_selezionati:
             return lista_selezionati
         else:
